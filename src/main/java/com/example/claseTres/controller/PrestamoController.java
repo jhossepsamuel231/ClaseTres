@@ -17,7 +17,6 @@ import com.example.claseTres.service.impl.LibroServiceImpl;
 
 @RestController
 @RequestMapping("/api/prestamos/")
-// http://cpp-kbro.com/api/prestamos
 public class PrestamoController {
 	
 	@Autowired
@@ -26,7 +25,7 @@ public class PrestamoController {
 	@Autowired
 	private PrestamoService prestamoService;
 	
-	//http://cpp-kbro.com/api/prestamos/saludar
+	
 	@GetMapping("/saludar")
 	public String saludar() {		
 		return "hola";
