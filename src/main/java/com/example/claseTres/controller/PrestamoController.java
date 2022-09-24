@@ -36,10 +36,7 @@ public class PrestamoController {
 	 * Creación, Logeo, Editar siempre es por un @RueqestBody
 	 */
 	@PostMapping("/crear")
-	public ResponseEntity< ? > crearPrestamo(
-			@RequestBody
-			Prestamos prestamo
-	) {
+	public ResponseEntity< ? > crearPrestamo(@RequestBody Prestamos prestamo) {
 		
 		Integer idPrestamo = null;
 		

@@ -30,8 +30,8 @@ public class PrestamoDaoImpl implements Todo<Prestamos>{
 	@Override
 	public int create(Prestamos t) {
 		
-		NamedParameterJdbcTemplate ejecutar = new NamedParameterJdbcTemplate(dataSource);
-		GeneratedKeyHolder generar = new GeneratedKeyHolder();
+		NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(dataSource);
+		GeneratedKeyHolder almacenarClavesGeneradas = new GeneratedKeyHolder();
 		
 		String query = "INSERT INTO prestamos(fecha_prestamos, fecha_devolucion, estado, idempleado, idalumno) VALUES(now(), :fechaDev, :estado, :idEmpleado, :idAlumno)";
 		
@@ -43,9 +43,9 @@ public class PrestamoDaoImpl implements Todo<Prestamos>{
 		valores.put("idAlumno", t.getIdAlumno());
 		
 		
-		ejecutar.update(query, new MapSqlParameterSource(valores), generar);
+		template.update(query, new MapSqlParameterSource(valores), almacenarClavesGeneradas);
 		
-		return generar.getKey().intValue();
+		return almacenarClavesGeneradas.getKey().intValue();
 		
 	}
 

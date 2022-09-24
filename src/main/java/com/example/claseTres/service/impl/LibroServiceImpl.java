@@ -26,7 +26,6 @@ public class LibroServiceImpl implements LibroService {
 		for(Detalles detalle: detalles) {
 			
 			Libros libroEncontrado = libroDao.traerLibro(detalle.getIdLibro());
-			System.out.println(libroEncontrado.toString());
 			verificar = libroEncontrado.getEstado() == LIBRO_PRESTADO;
 			
 		}

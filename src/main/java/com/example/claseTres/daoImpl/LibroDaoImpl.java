@@ -13,6 +13,8 @@ import com.example.claseTres.entity.Libros;
 @Component
 public class LibroDaoImpl implements LibroDao {
 	
+	private final static Integer LIBRO_PRESTADO = 2;
+	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
@@ -28,7 +30,7 @@ public class LibroDaoImpl implements LibroDao {
 	@Override
 	public int actualizarLibro(int idLibro) {
 		// TODO Auto-generated method stub
-		return jdbcTemplate.update("UPDATE libros SET estado = " + 2 + " WHERE idlibro = " + idLibro);
+		return jdbcTemplate.update("UPDATE libros SET estado = " + LIBRO_PRESTADO + " WHERE idlibro = " + idLibro);
 	}
 
 }
