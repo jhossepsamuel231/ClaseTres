@@ -19,5 +19,11 @@ public class Libros implements Serializable{
 	private String nombre;
 	private String autor;
 	private String editorial;
+	
+	/**
+	 * Estados:
+	 * 1. Libre
+	 * 2. Prestado
+	 */
 	private int estado;
 }

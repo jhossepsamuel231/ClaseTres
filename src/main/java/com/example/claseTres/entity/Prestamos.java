@@ -2,6 +2,7 @@ package com.example.claseTres.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,4 +23,7 @@ public class Prestamos implements Serializable{
 	private int estado;
 	private int idEmpleado;
 	private int idAlumno;
+	
+	private List<Detalles> detalles;
+	
 }

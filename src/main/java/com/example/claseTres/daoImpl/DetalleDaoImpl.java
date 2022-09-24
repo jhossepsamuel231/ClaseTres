@@ -13,13 +13,18 @@ import com.example.claseTres.entity.Detalles;
 @Component
 public class DetalleDaoImpl implements Todo<Detalles>{
 
+
+	private static final Integer DETALLE_INGRESADO = 1;
+	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
 	@Override
 	public int create(Detalles t) {
 		// TODO Auto-generated method stub
-		return 0;
+		String query = "INSERT INTO detalles(idprestamo, idlibro, estado) VALUES(?,?,?)";
+		
+		return jdbcTemplate.update(query, t.getIdPrestamo(), t.getIdLibro(), DETALLE_INGRESADO);
 	}
 
 	@Override

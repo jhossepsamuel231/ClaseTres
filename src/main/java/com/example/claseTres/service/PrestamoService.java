@@ -5,8 +5,11 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.claseTres.dao.Todo;
+import com.example.claseTres.daoImpl.DetalleDaoImpl;
+import com.example.claseTres.daoImpl.LibroDaoImpl;
 import com.example.claseTres.daoImpl.PrestamoDaoImpl;
 import com.example.claseTres.entity.Prestamos;
 
@@ -16,10 +19,29 @@ public class PrestamoService implements Todo<Prestamos>{
 	@Autowired
 	private PrestamoDaoImpl prestamoDaoImpl;
 	
+	@Autowired
+	private DetalleDaoImpl detalleDao;
+	
+	@Autowired
+	private LibroDaoImpl libroDao;
+	
 	@Override
+	@Transactional
 	public int create(Prestamos t) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		int idGenerado = prestamoDaoImpl.create(t);
+		
+		t.getDetalles().forEach(x -> {
+			x.setIdPrestamo(idGenerado);
+			detalleDao.create(x);
+			
+			// TODO actualizar estado libro
+			libroDao.actualizarLibro(x.getIdLibro());
+			
+		});
+		
+		return idGenerado;
+		
 	}
 
 	@Override
