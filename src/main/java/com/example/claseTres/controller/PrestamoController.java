@@ -1,12 +1,11 @@
 package com.example.claseTres.controller;
 
-import java.util.ArrayList;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.claseTres.entity.Prestamos;
 import com.example.claseTres.service.PrestamoService;
 import com.example.claseTres.service.impl.LibroServiceImpl;
+import com.example.claseTres.utils.Constantes;
 
 @RestController
 @RequestMapping("/api/prestamos/")
@@ -40,7 +40,7 @@ public class PrestamoController {
 		Integer idPrestamo = null;
 		
 		//TODO verifficar que solo venga 2 libros osea detalles		
-		if ( prestamo.getDetalles().size() > 2 ) {
+		if ( prestamo.getDetalles().size() > Constantes.MAX_LIBROS_ALUMNOS ) {
 			return new ResponseEntity<String>(
 					"No puede emprestar mas de 2 libros", 
 					HttpStatus.BAD_REQUEST
@@ -77,4 +77,8 @@ public class PrestamoController {
 		
 	}
 	
+	@PutMapping("/devolverLibros")
+	public ResponseEntity<?> devolverLibro(@RequestBody Prestamos id){
+		return null;
+	}
 }

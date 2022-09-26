@@ -6,6 +6,6 @@ public interface LibroDao {
 	
 	Libros traerLibro(int idLibro);
 	
-	int actualizarLibro(int idLibro);
+	int actualizarLibro(int idLibro, int estado);
 
 }

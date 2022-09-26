@@ -9,11 +9,12 @@ import com.example.claseTres.daoImpl.LibroDaoImpl;
 import com.example.claseTres.entity.Detalles;
 import com.example.claseTres.entity.Libros;
 import com.example.claseTres.service.LibroService;
+import com.example.claseTres.utils.Constantes;
 
 @Service
 public class LibroServiceImpl implements LibroService {
 	
-	private final static Integer LIBRO_PRESTADO = 2;
+	
 	
 	@Autowired
 	private LibroDaoImpl libroDao;
@@ -26,7 +27,7 @@ public class LibroServiceImpl implements LibroService {
 		for(Detalles detalle: detalles) {
 			
 			Libros libroEncontrado = libroDao.traerLibro(detalle.getIdLibro());
-			verificar = libroEncontrado.getEstado() == LIBRO_PRESTADO;
+			verificar = libroEncontrado.getEstado() == Constantes.LIBRO_PRESTADO;
 			
 		}
 		

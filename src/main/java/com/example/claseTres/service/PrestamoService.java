@@ -12,10 +12,11 @@ import com.example.claseTres.daoImpl.DetalleDaoImpl;
 import com.example.claseTres.daoImpl.LibroDaoImpl;
 import com.example.claseTres.daoImpl.PrestamoDaoImpl;
 import com.example.claseTres.entity.Prestamos;
+import com.example.claseTres.utils.Constantes;
 
 @Service
 public class PrestamoService implements Todo<Prestamos>{
-
+	
 	@Autowired
 	private PrestamoDaoImpl prestamoDaoImpl;
 	
@@ -36,7 +37,7 @@ public class PrestamoService implements Todo<Prestamos>{
 			detalleDao.create(x);
 			
 			// TODO actualizar estado libro
-			libroDao.actualizarLibro(x.getIdLibro());
+			libroDao.actualizarLibro(x.getIdLibro(), Constantes.LIBRO_PRESTADO);
 			
 		});
 		

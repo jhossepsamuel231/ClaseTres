@@ -15,14 +15,11 @@ import org.springframework.stereotype.Component;
 
 import com.example.claseTres.dao.Todo;
 import com.example.claseTres.entity.Prestamos;
+import com.example.claseTres.utils.Constantes;
 
 @Component
 public class PrestamoDaoImpl implements Todo<Prestamos>{
 	
-	private static final Integer PRESTAMOS_INGRESADO = 1;
-
-	@Autowired
-	private JdbcTemplate jdbcTemplate;
 	
 	@Autowired
 	private DataSource dataSource;
@@ -38,7 +35,7 @@ public class PrestamoDaoImpl implements Todo<Prestamos>{
 		
 		Map<String, Object> valores = new HashMap<>();
 		valores.put("fechaDev", t.getFecha_Devolucion());
-		valores.put("estado", PRESTAMOS_INGRESADO);
+		valores.put("estado", Constantes.PRESTAMOS_INGRESADO);
 		valores.put("idEmpleado", t.getIdEmpleado());
 		valores.put("idAlumno", t.getIdAlumno());
 		
