@@ -1,9 +1,13 @@
 package com.example.claseTres.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,10 +30,7 @@ public class PrestamoController {
 	private PrestamoService prestamoService;
 	
 	
-	@GetMapping("/saludar")
-	public String saludar() {		
-		return "hola";
-	}
+	
 
 	/**
 	 * Creación, Logeo, Editar siempre es por un @RueqestBody
@@ -80,5 +81,15 @@ public class PrestamoController {
 	@PutMapping("/devolverLibros")
 	public ResponseEntity<?> devolverLibro(@RequestBody Prestamos id){
 		return null;
+	}
+	
+	@GetMapping("/ListarPrestamo")
+	public List<Map<String, Object>> ListarTodo(){
+		return prestamoService.readAll();
+	}
+	
+	@GetMapping("/buscarPrestamos/{id}")
+	public Prestamos read(@PathVariable int id) {
+		return prestamoService.read(id);
 	}
 }

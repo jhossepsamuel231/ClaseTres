@@ -7,6 +7,8 @@ import java.util.Map;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.batch.BatchProperties.Jdbc;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -20,6 +22,8 @@ import com.example.claseTres.utils.Constantes;
 @Component
 public class PrestamoDaoImpl implements Todo<Prestamos>{
 	
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
 	
 	@Autowired
 	private DataSource dataSource;
@@ -49,13 +53,15 @@ public class PrestamoDaoImpl implements Todo<Prestamos>{
 	@Override
 	public List<Map<String, Object>> readAll() {
 		// TODO Auto-generated method stub
-		return null;
+		String query = "SELECT P.fecha_prestamos, P.fecha_devolucion, P.estado, A.nombres, A.apellidos, L.nombre FROM prestamos AS P INNER JOIN alumnos AS A ON P.idalumno=A.idalumno INNER JOIN detalles AS D ON P.idprestamo=D.idprestamo INNER JOIN libros AS L ON D.idlibro=L.idlibro";
+		return jdbcTemplate.queryForList(query);
 	}
 
 	@Override
 	public Prestamos read(int id) {
 		// TODO Auto-generated method stub
-		return null;
+		String query = "SELECT * FROM prestamos WHERE idprestamo=?";
+		return jdbcTemplate.queryForObject(query, new BeanPropertyRowMapper<Prestamos>(Prestamos.class), id);
 	}
 
 	@Override

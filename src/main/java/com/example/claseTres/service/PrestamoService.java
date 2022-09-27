@@ -48,13 +48,13 @@ public class PrestamoService implements Todo<Prestamos>{
 	@Override
 	public List<Map<String, Object>> readAll() {
 		// TODO Auto-generated method stub
-		return null;
+		return prestamoDaoImpl.readAll();
 	}
 
 	@Override
 	public Prestamos read(int id) {
 		// TODO Auto-generated method stub
-		return null;
+		return prestamoDaoImpl.read(id);
 	}
 
 	@Override
